@@ -64,10 +64,12 @@ class Solution3:
 
         for i in range(len(height)):
             # turning point : higher than just before
+            # not turning point -> append to stack
             while stack and height[i] > height[stack[-1]]:
                 # pop from stack
                 top = stack.pop()
 
+                # empty stack -> break
                 if not len(stack):
                     break
 
@@ -81,5 +83,5 @@ class Solution3:
         return volume
 
 
-height = [5,5,1,7,1,1,5,2,7,6]
+height = [2,1,0,0,3,0,1]
 print(Solution3().trap(height))
