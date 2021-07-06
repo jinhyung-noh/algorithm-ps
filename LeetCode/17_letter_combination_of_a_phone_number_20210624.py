@@ -53,10 +53,31 @@ class Solution2:
         _dfs_helper()
         return words
 
-    
-# solution in Book
+
 class Solution3:
-    def letterCombinations(delf, digits: str) -> list[str]:
+    def letterCombinations(self, digits: str) -> list[str]:
+        def _dfs_helper(digits: str, k: int):
+            
+            # base case
+            if k == len(digits):
+                result.append("".join(stack))
+                return
+
+            for char in keypad[digits[k]]:
+                stack.append(char)
+                _dfs_helper(digits, k+1)
+                stack.pop()
+
+        keypad = {"1":"", "2":"abc", "3":"def", "4":"ghi", "5":"jkl",
+               "6":"mno", "7":"pqrs", "8":"tuv", "9":"wxyz", "0":""}
+        result = []
+        stack = []
+        _dfs_helper(digits, 0)
+        return [] if result == [""] else result
+##############################################################
+# solution in Book
+class Solution4:
+    def letterCombinations(self, digits: str) -> list[str]:
         def dfs(index, path):
             if len(path) == len(digits):
                 result.append(path)
@@ -80,7 +101,7 @@ class Solution3:
 
 # revision of solution3
 # 339p
-class Solution4:
+class Solution5:
     def letterCombinations(delf, digits: str) -> list[str]:
         def dfs(index, path):
             if len(path) == len(digits):
@@ -101,4 +122,4 @@ class Solution4:
         return result
 
 digits = "222"
-print(Solution4().letterCombinations(digits))
+print(Solution3().letterCombinations(digits))
