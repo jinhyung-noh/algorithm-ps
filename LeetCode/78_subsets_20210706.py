@@ -17,8 +17,25 @@ class Solution:
         _dfs_helper()
         return result 
 
-# solution in book
+
 class Solution2:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+        def _dfs_helper(idx):
+            # add path everytime
+            result.append(stack[:])
+
+            # recursive dfs
+            for new_idx in range(idx, len(nums)):
+                stack.append(nums[new_idx])
+                _dfs_helper(new_idx+1)
+                stack.pop()
+
+        result, stack = [], []
+        _dfs_helper(0)
+        return result
+            
+# solution in book
+class Solution3:
     def subsets(self, nums: list[int]) -> list[list[int]]:
         def dfs(index, path):
             # add path every time
