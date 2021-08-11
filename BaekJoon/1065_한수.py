@@ -16,8 +16,8 @@ def hansu(N):
             break
 
         for j in range(0, 10):
-            k = 2 * j - i       # 마지막 자리수
-            if 0 <= k <= 9:
+            k = 2 * j - i       # 마지막 자리수가 등차수열을 이루는 수
+            if 0 <= k <= 9:     # 마지막 자리수가 0~9일때만 말이 됨
                 if 100*i + 10*j + k <= N:
                     cnt += 1
                 else:

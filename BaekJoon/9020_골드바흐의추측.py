@@ -16,6 +16,7 @@ for n in range(3,10001,2):
 
 
 def goldbach_partition(target):
+    # target의 반에서 가장 가까운 소수 찾기
     closest_idx = bisect.bisect_right(primes, target // 2) - 1
     for idx in range(closest_idx, -1,-1):
         if primes[bisect.bisect_left(primes, target - primes[idx])] + primes[idx] == target:
