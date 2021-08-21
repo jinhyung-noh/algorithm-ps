@@ -64,7 +64,5 @@ for key in graph:
 
 
 # print(*DFS(graph, v))
-print(*DFS_stack(graph, v))
+# print(*DFS_stack(graph, v))
 # print(*BFS(graph, v))
-
-
