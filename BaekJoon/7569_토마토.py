@@ -44,8 +44,6 @@ def tomato():
                 tomatoes[nx][ny][nz] = 1   # 익은 토마토로 변신
                 normal_tomatoes -= 1
                 rotten_tomatoes.append((nx, ny, nz))
-                if normal_tomatoes == 0:
-                    break
 
     ###################
     if normal_tomatoes == 0:
