@@ -30,7 +30,7 @@ def tomato():
     while normal_tomatoes > 0 and len(rotten_tomatoes) > 1:
 
         curr = rotten_tomatoes.popleft()
-        # today start
+        # next day start
         if not curr:
             time += 1
             rotten_tomatoes.append(False)
@@ -51,7 +51,3 @@ def tomato():
     return -1
 
 print(tomato())
-
-
-
-

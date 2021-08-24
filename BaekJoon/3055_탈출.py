@@ -3,6 +3,7 @@ from collections import deque
 
 def escape():
 
+    # bfs: waters, hedgehogs에 따라 다르게 수행
     def _spread(x, y, id):
 
         for i in range(4):
@@ -27,8 +28,8 @@ def escape():
     ###################################################
     # inputs
     R, C = list(map(int, sys.stdin.readline().split()))
-    waters = []
-    hedgehog = None
+    waters = []         # 초기 water의 좌표들
+    hedgehog = None     # 처음 고슴도치의 좌표
     field = [None] * R
     for i in range(R):
         field[i] = list(sys.stdin.readline().strip())
@@ -37,21 +38,23 @@ def escape():
                 waters.append((i, j, '*'))
             elif field[i][j] == 'S':
                 hedgehog = (i, j, "S")
-    ############################################
+    ###################################################
 
     dr = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-    queue = deque([False] + waters + [hedgehog])
+    queue = deque([False] + waters + [hedgehog])    # False는 시간 사이의 간격
     time = 0
-    survived = False
+    survived = False    # 비버소굴에 도착했는지
     while len(queue) > 1:
         curr = queue.popleft()
 
-        # update time
+        # update time   
+        # deque([False, (waters ...), (hedgehogs...)] 일때 False가 leftpop되면 이전 time은 끝나고 time+1로 갱신
         if not curr:
             time += 1
             queue.append(False)
             continue
         
+        # waters. hedgehogs일 경우 bfs 수행하고 비버소굴에 도착했는지 확인
         x, y, identity = curr
         if _spread(x, y, identity):
             survived = True
