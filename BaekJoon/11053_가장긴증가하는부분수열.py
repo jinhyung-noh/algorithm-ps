@@ -21,6 +21,23 @@ def longest_partial_sequence():
         _inner(start_idx, start_idx)
 
     maximum_length = max(visited)
-    return maximum_length
+    print(maximum_length)
+    return
 
-print(longest_partial_sequence())
+def LIS():
+
+    # inputs
+    N = int(sys.stdin.readline())
+    series = list(map(int, sys.stdin.readline().split()))
+
+    table = [1] * N     # table[i]: series[i]로 끝나는 LIS 길이
+    for i in range(N):
+        for j in range(i):
+            if series[j] < series[i]:
+                table[i] = max(table[i], table[j] + 1)
+
+    print(max(table))
+    return
+
+# longest_partial_sequence()
+LIS()
