@@ -24,7 +24,7 @@ def bfs(x, y):
         # 다음번 물에 대해 bfs 수행
         water()
 
-    print("KAKTUS")
+    print("Kaktus")
     return
 
 # 처음 wq를 받았을 때 원소 만큼만 bfs 수행한다/ wq에 append는 계속 하여 다음에 탐색할 물 추가는 함

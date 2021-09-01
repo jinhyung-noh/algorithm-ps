@@ -4,13 +4,15 @@ import sys
 def 외판원순회():
 
     # bit-masking functions
+    # 원소 포함 여부 확인
     def isIn(A: int, i: int):
         return (A & (1 << (i-1))) != 0
 
+    # 차집합
     def diff(A: int, i: int):
         return (A & ~(1 << (i-1)))
 
-    # A의 원소 개수 반환
+    # 원소 개수 반환
     def count(A, n):
         cnt = 0
         for i in range(n):
@@ -26,7 +28,9 @@ def 외판원순회():
         # minimum = sys.maxsize
         minimum = sys.maxsize
         for j in range(1, N):
+            # 비트마스킹: 원소 포함 여부
             if isIn(A, j):
+                # 비트마스킹: 차집합
                 temp = W[i][j] + D[j][diff(A, j)]
                 if temp < minimum:
                     minimum = temp
@@ -54,11 +58,12 @@ def 외판원순회():
         # k가 정해지면
         # 모든 A들 중에
         for A in range(1, size):
-            # 원소의 개수가 k인 것만 거른다
+            # 비트마스킹: 원소 개수 파악
+            # n(A) == k: 원소의 개수가 k인 것만 거른다
             if count(A, N-1) == k:
-                # n(A) == k
                 # 'start' is not in A
                 for start in range(1, N):
+                    # 비트마스킹: 원소 포함 여부
                     if not isIn(A, start):
                         D[start][A], P[start][A] = min_path(A, start)
 
