@@ -1,0 +1,42 @@
+import sys
+from heapq import heappop, heappush, heapify
+
+
+# inputs
+
+N, K = map(int, sys.stdin.readline().split())
+jewels = [None] * N
+bags = [None] * K
+is_full = [False] * K
+for i in range(N):
+    jewels[i] = tuple(map(int, sys.stdin.readline().split()))
+for i in range(K):
+    bags[i] = int(sys.stdin.readline())
+# heapify
+heapify(bags)
+
+
+# sort jewels
+jewels.sort(key=lambda x: (-x[1], x[0]))
+
+# search from most valuable jewel
+sum = 0
+for jewel in jewels:
+    temp = []
+    try:
+        bag = heappop(bags)
+    except:
+        break
+    while bag < jewel[0]:
+        heappush(temp, bag)
+        try:
+            bag = heappop(bags)
+        except:
+            break
+
+    if bag >= jewel[0]:
+        sum += jewel[1]
+    bags =temp + bags
+    heapify(bags)
+
+print(sum)
