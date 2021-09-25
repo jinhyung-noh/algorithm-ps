@@ -1,12 +1,14 @@
 def solution(begin, target, words):
     from collections import deque
 
-    # 바뀌는 것이 가능한지 알아보는 함수
+    # 두 단어가 바뀌는 것이 가능한지 알아보는 함수
     def _changable(word1, word2):
         cnt = 0
+        # 각 자리마다 비교
         for i in range(len(word1)):
             if word1[i] != word2[i]:
                 cnt += 1
+        # 바뀌는 자리가 1개면 changable!
         if cnt == 1:
             return True
         return False
