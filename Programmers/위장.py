@@ -11,7 +11,6 @@ def solution(clothes):
     for category in spi_clothes:
         answer *= len(spi_clothes[category]) + 1
 
-    print(answer)
     return answer - 1
 
 clothes = [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
