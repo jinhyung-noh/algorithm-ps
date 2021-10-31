@@ -1,38 +1,32 @@
 import sys
 
-def iron_rod():
+string = sys.stdin.readline().strip()
 
-    # input 
-    string = sys.stdin.readline().strip()
+stack = []
+# 답: 관통수 + 막대수
+cnt_lazer = 0   # 관통수
+cnt_stick = 0   # 원래 막대 수
+before = ""     # ')' 나왔을 때: 레이저인지, 막대 끝인지 구분하기 위해 이전 것 기록
 
-    result = 0
-    cnt_left = 0
-    stack = []
+# string = "()(((()())(())()))(())"
+for char in string:
 
-    for char in string:
+    if char == '(':
+        stack.append(char)
+        before = char
+        continue
 
-        if char == '(':
-            stack.append(char)
-            cnt_left += 1
+    # 여기부터는 char == ')'
+    # 레이저인지, 막대 끝인지 구분해야한다
+    stack.pop()
 
-        else:   # ')'
-            if stack[-1] =='(':
-                stack.pop()
-                cnt_left -= 1
-                stack.append(cnt_left)
-            else: # number
-                cnt = 0
-                temp_stack = []
-                while stack[-1] != '(':
-                    cnt += 1
-                    num = stack.pop()
-                    if num > 1:
-                        temp_stack.append(num - 1)
-                stack.pop() # '(' 제거
-                cnt_left -= 1
-                stack = stack + temp_stack[::-1]
-                result += (cnt + 1)
-    return result
+    if before == '(': # 레이저
+        cnt_lazer += len(stack)
+    
+    else:             # 막대 끝
+        cnt_stick += 1
+    
+    before = char
 
-print(iron_rod())
+print(cnt_lazer + cnt_stick)
 
