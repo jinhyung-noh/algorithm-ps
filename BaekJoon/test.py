@@ -1,8 +1,13 @@
-def recursion(i):
-	if i>10:
-		return
+import heapq
 
-	print(i)
-	recursion(i+1)
-	print(i)
-recursion(0)
+arr = []
+
+numbers = [3,1,4,2,5]
+
+# for number in numbers:
+# 	heapq.heappush(arr, number)
+
+heapq.heapify(numbers)
+print(numbers)
+
+# print(heapq.heappop(arr), arr)
