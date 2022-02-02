@@ -8,6 +8,7 @@ def 다리놓기():
         if m//2 < n:
             n = m - n
         # 조합(m C n) 구하기
+        # m C n = ( m * (m-1) * ... * (m-(n-1)) ) // (n!)
         comb = 1
         for i in range(n):
             comb *= (m-i)
